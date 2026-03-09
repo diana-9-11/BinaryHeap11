@@ -14,4 +14,44 @@ public class BinaryHeap {
             data = Arrays.copyOf(data, data.length * 2);
         }
     }
+
+    public int getLeftChildIndex(int index){
+        int left = index * 2 + 1;
+        if(left<size) return left;
+        return -1;
+    }
+    public int getRightChildIndex(int index){
+        int right = index * 2 + 2;
+        if(right<size) return right;
+        return -1;
+    }
+    public int getParentIndex(int index){
+        if(index != 0){
+            return (index - 1) / 2;
+        }
+        return -1;
+    }
+
+    public void swap(int i, int j){
+        data[i] += data[j];
+        data[j] = data[i] - data[j];
+        data[i] -= data[j];
+    }
+
+    public void heapifyUp(int index){
+        while (getParentIndex(index)!=-1 && data[getParentIndex(index)]<data[index]){
+            swap(getParentIndex(index), index);
+            index = getParentIndex(index);
+        }
+    }
+    public void insert(int value){
+        ensureCapacity();
+        data[size] = value;
+        size++;
+        heapifyUp(size-1);
+    }
+
+    public void printData(){
+        System.out.println(Arrays.toString(data));
+    }
 }
