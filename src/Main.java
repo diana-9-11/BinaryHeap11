@@ -7,5 +7,8 @@ public class Main {
         heap.insert(10);
         heap.insert(65);
         heap.printData();
+        heap.poll();
+        heap.poll();
+        heap.printData();
     }
 }

@@ -61,7 +61,8 @@ public class BinaryHeap {
         swap(0, size-1);
         data[size-1] = 0;
         size--;
-        heapifyDown(0);
+        if (size!=0){
+            heapifyDown(0);}
         return result;
     }
 
