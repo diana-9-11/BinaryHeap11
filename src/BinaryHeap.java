@@ -54,4 +54,30 @@ public class BinaryHeap {
     public void printData(){
         System.out.println(Arrays.toString(data));
     }
+    //poll will return the value of the processed node and remove it from the heap
+    public int poll(){
+        //swap first and the last elements
+        int result = data[0];
+        swap(0, size-1);
+        data[size-1] = 0;
+        size--;
+        heapifyDown(0);
+        return result;
+    }
+
+    public void heapifyDown(int index){
+        //zlotizost O log(n) since we are only going in one direction
+        while(index!=-1){
+            if(getLeftChildIndex(index)==-1)break;
+            int greaterChild = getLeftChildIndex(index);
+            if(getRightChildIndex(index)!= -1 && data[getRightChildIndex(index)]>data[greaterChild]) {
+                greaterChild = getRightChildIndex(index);
+            }
+            if(data[index]<data[greaterChild]){
+                swap(index, greaterChild);
+                index = greaterChild;
+            }
+            else{ break;}
+        }
+    }
 }
